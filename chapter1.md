@@ -7,6 +7,10 @@ Producing ray traced images requires looping through each pixel and generating c
  
 ####Converting from raster space to world space
  **1. Raster Space to NDC Space**
+ <p text-align="center">$$PixelNDC_x = \frac{(Pixel_x) + 0.5}{ImageWidth},$$</p><br>
+$$PixelNDC_y = \frac{(Pixel_y) + 0.5}{ImageHeight}.$$
+
+
  
 ######Raster Space:
 >Uses **raster coordinate system**, where the x-axis points to the right (when world space's x-axis points to the right) and y-axis points downwards. 
@@ -17,9 +21,7 @@ Producing ray traced images requires looping through each pixel and generating c
 
 ######NDC Space (Normalised Device Coordinate Space):
 
-<p text-align="center">$$PixelNDC_x = \frac{(Pixel_x) + 0.5}{ImageWidth},$$</p>
 
-$$PixelNDC_y = \frac{(Pixel_y) + 0.5}{ImageHeight}.$$
 
 >The NDC coordinate system's origin is situated in the lower-left corner of the canvas.
 
