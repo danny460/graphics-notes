@@ -8,22 +8,24 @@ Producing ray traced images requires looping through each pixel and generating c
 ####Converting from raster space to world space
  **1. Raster Space to NDC Space**
  
-$$PixelNDC_x = \frac{(Pixel_x) + 0.5}{ImageWidth},$$<br><br>
+$$PixelNDC_x = \frac{(Pixel_x + 0.5)}{ImageWidth},\\
 
-$$PixelNDC_y = \frac{(Pixel_y) + 0.5}{ImageHeight}.$$
+PixelNDC_y = \frac{(Pixel_y + 0.5)}{ImageHeight}.$$
  
 
 
  **2. NDC Space to Screen Space**
  
- \begin{array}{l}
- PixelScreen_x = 2 * {PixelNDC_x} - 1,\\
- PixelScreen_y = 2 * {PixelNDC_y} - 1.
-\end{array}
+ 
+ $$PixelScreen_x = 2 * {PixelNDC_x} - 1,\\
+ PixelScreen_y = 1 - 2 * {PixelNDC_y} .$$
+
   
  **3. Screen Space to World Space**
  
- //
+ $$ImageAspectRatio = \dfrac{ImageWidth}{ImageHeight},\\
+PixelCamera_x = (2 * {PixelScreen_x} - 1) * {ImageAspectRatio},\\
+PixelCamera_y = (1 - 2 * {PixelScreen_y}).$$
 ######Raster Space:
 >Uses **raster coordinate system**, where the x-axis points to the right (when world space's x-axis points to the right) and y-axis points downwards. 
 
@@ -32,15 +34,13 @@ $$PixelNDC_y = \frac{(Pixel_y) + 0.5}{ImageHeight}.$$
 >The origin situated at the top-left. A pixel in this coordinate system, is one unit long in x and y.     
 
 ######NDC Space (Normalised Device Coordinate Space):
+>Origin situates at corner. The coordinates of the pixels are now **in the range [0,1]**. Note NDC in ray tracing is different than that in rasterisation world. For rasterisation, the mapping is generally in the range [-1, 1].
 
+######Screen Space
+>Origin situates at the center. The coordinates is **mapped in the range of [-1, 1]**.
 
-
->The NDC coordinate system's origin is situated in the lower-left corner of the canvas.
-
-<br>
-
->the coordinates of the pixels are now **in the range [0,1]**.
-
-
+##Shading Fundamentals
+---
+```//TODO```
 
 
