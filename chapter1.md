@@ -8,24 +8,23 @@ Producing ray traced images requires looping through each pixel and generating c
 ####Converting from raster space to world space
  **1. Raster Space to NDC Space**
  
-$$PixelNDC_x = \frac{(Pixel_x + 0.5)}{ImageWidth},\\
+$$PixelNDC_x = \dfrac{(Pixel_x + 0.5)}{ImageWidth},\\
 
-PixelNDC_y = \frac{(Pixel_y + 0.5)}{ImageHeight}.$$
+PixelNDC_y = \dfrac{(Pixel_y + 0.5)}{ImageHeight}.$$
  
-
-
  **2. NDC Space to Screen Space**
- 
  
  $$PixelScreen_x = 2 * {PixelNDC_x} - 1,\\
  PixelScreen_y = 1 - 2 * {PixelNDC_y} .$$
-
   
- **3. Screen Space to World Space**
- 
+ **3. Account for Aspect Ratio**
+   
  $$ImageAspectRatio = \dfrac{ImageWidth}{ImageHeight},\\
 PixelCamera_x = (2 * {PixelScreen_x} - 1) * {ImageAspectRatio},\\
 PixelCamera_y = (1 - 2 * {PixelScreen_y}).$$
+
+**4. Account for Field of View**
+
 ######Raster Space:
 >Uses **raster coordinate system**, where the x-axis points to the right (when world space's x-axis points to the right) and y-axis points downwards. 
 
@@ -38,6 +37,9 @@ PixelCamera_y = (1 - 2 * {PixelScreen_y}).$$
 
 ######Screen Space
 >Origin situates at the center. The coordinates is **mapped in the range of [-1, 1]**.
+
+######World Space
+>The y coordination is still in the range of [-1, 1]. However, **the x coordination is mapped in the range of [-aspect ratio, aspect ratio]**.
 
 ##Shading Fundamentals
 ---
