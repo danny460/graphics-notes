@@ -1,3 +1,10 @@
-# First Chapter
+#Ray Tracing Fundamentals
 
-GitBook allows you to organize your book into chapters, each chapter is stored in a separate file like this one.
+---
+## Camera Rays
+Producing ray traced images requires looping through each pixel and generating corresponding **camera rays**. The challenge in ray generation is to calculate the **direction of rays** based on the pixel coordination and the **origin**. 
+
+> By convention image frame is one unit away from camera origin
+
+- screen space
+
