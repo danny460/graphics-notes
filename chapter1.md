@@ -21,7 +21,7 @@ Producing ray traced images requires looping through each pixel and generating c
 
 <br>
 
->dd
+>the coordinates of the pixels are now **in the range [0,1]**,
 
  **2. NDC Space to Screen Space**
  
