@@ -17,6 +17,10 @@ Producing ray traced images requires looping through each pixel and generating c
 
 ######NDC Space (Normalised Device Coordinate Space):
 
+<p text-align="center">$$PixelNDC_x = \frac{(Pixel_x) + 0.5}{ImageWidth},$$</p>
+
+$$PixelNDC_y = \frac{(Pixel_y) + 0.5}{ImageHeight}.$$
+
 >The NDC coordinate system's origin is situated in the lower-left corner of the canvas.
 
 <br>
