@@ -1,7 +1,6 @@
 # Summary
 
 * [Introduction](README.md)
-* [Ray Tracing Fundamentals](chapter1.md)
-
-
+* [Ray Generation](chapter1.md)
+* Shading
 

@@ -1,4 +1,3 @@
-# Intro
-
-This is a learning note documenting my learning progress.
+# Wassup
+the notes to keep track of my learning progress.
     

@@ -1,11 +1,12 @@
+## Generating Camera Rays
+To produce ray traced images, we loop through each pixel and generate the **camera ray**. We need to calculate the **direction of rays** form the **camera origin** to the pixel. This section is on the techniques of converting pixel coordination from **raster space** to **world space**.
 
----
-## Camera Rays
-Producing ray traced images requires looping through each pixel and generating corresponding **camera rays**. In ray generation we calculate the **direction of rays** form the **camera origin** to the pixel. This involves converting pixel coordination from **raster space** to **world space**.
+######Note
+> By convention, the image frame is one unit away from camera origin. The camera orients to the negative z-axis or negative y-axis.
 
-> By convention image frame is one unit away from camera origin. The camera orients to the negative z-axis or negative y-axis.
  
-####Converting from raster space to world space
+---
+####Converting from Raster Space to World Space
  **1. Raster Space to NDC Space**
  
 $$PixelNDC_x = \dfrac{(Pixel_x + 0.5)}{ImageWidth},\\
@@ -25,24 +26,21 @@ PixelCamera_y = (1 - 2 * {PixelScreen_y}).$$
 
 **4. Account for Field of View**
 
-######Raster Space:
->Uses **raster coordinate system**, where the x-axis points to the right (when world space's x-axis points to the right) and y-axis points downwards. 
 
-<br>
-
->The origin situated at the top-left. A pixel in this coordinate system, is one unit long in x and y.     
-
-######NDC Space (Normalised Device Coordinate Space):
->Origin situates at corner. The coordinates of the pixels are now **in the range [0,1]**. Note NDC in ray tracing is different than that in rasterisation world. For rasterisation, the mapping is generally in the range [-1, 1].
-
-######Screen Space
->Origin situates at the center. The coordinates is **mapped in the range of [-1, 1]**.
-
-######World Space
->The y coordination is still in the range of [-1, 1]. However, **the x coordination is mapped in the range of [-aspect ratio, aspect ratio]**.
-
-##Shading Fundamentals
 ---
-```//TODO```
+####Different Spaces
+#####Raster Space:
+Uses **raster coordinate system**, where the x-axis points to the right (when world space's x-axis points to the right) and y-axis points downwards. The origin situated at the top-left. A pixel in this coordinate system, is one unit long in x and y.     
+
+#####NDC Space (Normalised Device Coordinate Space):
+Origin situates at corner. The coordinates of the pixels are now **in the range [0,1]**. Note NDC in ray tracing is different than that in rasterisation world. For rasterisation, the mapping is generally in the range [-1, 1].
+
+#####Screen Space
+Origin situates at the center. The coordinates is **mapped in the range of [-1, 1]**.
+
+#####World Space
+The y coordination is still in the range of [-1, 1]. However, **the x coordination is mapped in the range of [-aspect ratio, aspect ratio]**.
+
+
 
 
