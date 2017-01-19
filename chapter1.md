@@ -55,7 +55,7 @@ Previously the conversion relies on camera sitting at default position $$(0,0,0)
 
 The translation and rotation of the camera can be expressed by a $$ 4 \times 4 \text{ matrix}$$ called the **camera-to-world matrix**.
 
-```c
+```C
 int hello = 0;
 float gg = 5; 
 ```
