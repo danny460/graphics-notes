@@ -26,6 +26,13 @@ PixelCamera_y = (1 - 2 * {PixelScreen_y}).$$
 
 **4. Account for Field of View**
 
+In the particular case where the camera is $$1 unit$$ away from the image frame, the view angle is $$90^\circ$$. For a view angle $$\alpha$$, we have :
+$$PixelCamera_x = (2 * {PixelScreen_x} - 1) * {ImageAspectRatio},\\
+PixelCamera_y = (1 - 2 * {PixelScreen_y}) * tan(\dfrac{}).
+$$
+
+
+
 
 ---
 ####Different Spaces
