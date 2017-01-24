@@ -19,11 +19,13 @@ Vec3f AC = C - A;
 Vec3f N = cross(AB, AC); // triangle's normal
 N.normalize();
 ```
-**Coordinate system handedness**(?)
+**Coordinate system handedness**(!!)
 
-The order in which a triangle's vertices are define affects the orientation of the surface normal, as the order for the cross product affects the direction of the normal. There will be conflicts when the modelling application and the renderer have different handedness. The solution is to mirror the camera and flip the model's normal direction(?).
+The order in which a triangle's vertices are define affects the orientation of the surface normal, as the order for the cross product affects the direction of the normal. There will be conflicts when the modelling application and the renderer have different handedness. The solution is to mirror the camera and flip the model's normal direction(!?).
 
 #### Ray-Triangle Intersection: Geometric Solution
+
+**1. Finding the Point of Intersection**
 
 Suppose the hit point is P, with ray origin O and direction R. D represents the **distance** from the origin to the plane.
 
@@ -34,8 +36,6 @@ D + N * P_0 = 0,\\
 \text{where } P_0 \text{is any point on the plane.}
 $$
 
-
-
 The second equation can be derived from, 
 $$
 (P - P_0) \cdot N = 0,    \\
@@ -45,21 +45,41 @@ $$
 
 Then solving t,
 $$
-t = \dfrac{N \cdot O - N \cdot P_0}{N \cdot R}\\
-=\dfrac{N \cdot O - D}{N \cdot R}
+t = -\dfrac{N \cdot O - N \cdot P_0}{N \cdot R}\\
+=-\dfrac{N \cdot O + D}{N \cdot R}
 
 $$
 
-```cpp
-intersectTriangle(Vec3f rayOri, Vec3f rayDir, Triangle T){
-    Vect3f a = T.v0, b = T.v1, c = T.v2;
-    Vect3f ab = b - a, ac = c - a ;
-    Vec3f norm = cross(ab, ac); //calculate normal
-    float distance = dot(norm  , (rayOri - a)); 
-    norm.normalize();
-    float t = ( dot(rayOri, norm) + distance ) / dot(rayDir, norm);
+**2. Additional Tests**
+
+There are some cases we need to consider for finding the intersection point.
+
+**Parallel**
+
+To test for cases where the ray and the triangle plane is in parallel. We need to test for cases where:
+$$
+    R \cdot N = 0
+$$
+
+
+**Triangle Behind Origin**
+
+When $$t < 0$$, the triangle is behind the ray's origin, therefore not visible. We only proceed with a positive $$t$$ value.
+
+
+**Intersection is Inside or Outside**
+The point pHIt is the intersection of the ray and the plane, but still it could be outside of the triangle area.
+  
+```csharp
+intersect(Vec3f rayOri, Vec3f rayDir, Vec3f norm, Vec3f pPlane){
+    float distance = dot(norm  , (pPlane - rayOri)); 
+    float t = -( dot(rayOri, norm) + distance ) / dot(rayDir, norm);
+    Vec3f pHit = rayOri + t * rayDir;
 }
 ```
+
+
+
 
 
 
