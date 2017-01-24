@@ -27,22 +27,38 @@ The order in which a triangle's vertices are define affects the orientation of t
 
 Suppose the hit point is P, with ray origin O and direction R. D represents the **distance** from the origin to the plane.
 
-Then we have: 
-$$ 
+Then we have,
+$$
 O + Rt = P, \\
 D + N * P_0 = 0,\\
 \text{where } P_0 \text{is any point on the plane.}
 $$
 
-The second equation can be derived from 
+
+
+The second equation can be derived from, 
 $$
 (P - P_0) \cdot N = 0,    \\
 \because P = O + tR,      \\
 \therefore P \cdot N = -D 
 $$
 
-```cpp
+Then solving t,
+$$
+t = \dfrac{N \cdot O - N \cdot P_0}{N \cdot R}\\
+=\dfrac{N \cdot O - D}{N \cdot R}
 
+$$
+
+```cpp
+intersectTriangle(Vec3f rayOri, Vec3f rayDir, Triangle T){
+    Vect3f a = T.v0, b = T.v1, c = T.v2;
+    Vect3f ab = b - a, ac = c - a ;
+    Vec3f norm = cross(ab, ac); //calculate normal
+    float distance = dot(norm  , (rayOri - a)); 
+    norm.normalize();
+    float t = ( dot(rayOri, norm) + distance ) / dot(rayDir, norm);
+}
 ```
 
 
