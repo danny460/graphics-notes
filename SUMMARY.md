@@ -2,5 +2,6 @@
 
 * [Introduction](README.md)
 * [Ray Generation](chapter1.md)
-* Shading
+* [Geometry](geometry.md)
+* [Shading](shading.md)
 
